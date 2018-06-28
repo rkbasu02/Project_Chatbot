@@ -1,0 +1,53 @@
+<html>
+<head>
+<script>
+    var xmlhttp;
+    
+    if (window.XMLHttpRequest) {
+        // code for modern browsers
+        xmlhttp = new XMLHttpRequest();
+     } else {
+        // code for old IE browsers
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } 
+
+    function send_query()
+    {
+        document.getElementById("send").value = 'Working...';
+        var query = document.getElementById("query").value;
+        var post_param = 'query=' + query; //join addtional parameters by '&'
+        document.getElementById("query").value = '';
+
+        document.getElementById("conversation").value = document.getElementById("conversation").value + '\nYou: ' + query;
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("conversation").value = document.getElementById("conversation").value + '\nAgent: ' + this.responseText;
+                document.getElementById("send").value = 'Send';
+           }
+        };
+
+        xmlhttp.open("POST", "http://localhost:3000", true); //call node.js middle layer
+        xmlhttp.send(post_param); 
+    }
+</script>
+</head>
+<body>
+    <table border="0" width="90%" align="center">
+        <tr>
+            <td>
+                What is your query? <input type="text" name="query" id="query" size="60" maxlength="255">
+                <input type="button" id="send" value="Send" onclick="send_query();">
+            </td>
+        </tr>
+            <td>Conversation</td>
+        <tr>
+        </tr>
+            <td>
+                <textarea id="conversation" rows="20" cols="80" readonly="readonly"></textarea>
+            </td>
+        <tr>
+        </tr>
+    </table>
+</body>
+</html>
