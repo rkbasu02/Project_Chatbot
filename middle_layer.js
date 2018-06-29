@@ -11,7 +11,7 @@ var sessionId = projectId + Math.random(); //change it to a session variable for
 var languageCode = 'en-US';
 
 // Instantiate a DialogFlow client.
-process.env['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/rupai/mydata/program/NODE/Robin-510c813306e1.json';
+process.env['GOOGLE_APPLICATION_CREDENTIALS'] = 'Robin-510c813306e1.json';
 var sessionClient = new dialogflow.SessionsClient();
 
 // Define session path
