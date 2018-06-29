@@ -10,7 +10,7 @@ const languageCode = 'en-US';
 
 // Instantiate a DialogFlow client.
 const dialogflow = require('dialogflow');
-process.env['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/rupai/mydata/program/NODE/Robin-510c813306e1.json';
+process.env['GOOGLE_APPLICATION_CREDENTIALS'] = 'Robin-510c813306e1.json';
 const sessionClient = new dialogflow.SessionsClient();
 
 // Define session path
